@@ -6,9 +6,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.model.handleAction
 import com.sacada.core.util.getStringAttribute
 import com.sacada.util.getIconResource
+import kotlinx.serialization.json.JsonPrimitive
 
 
 @Composable
@@ -22,7 +24,7 @@ fun RenderFloatingActionButton(component: ViewComponent) {
             component.action?.let { handleAction(it) }
         },
         containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary
+        contentColor = MaterialTheme.colorScheme.onPrimary,
     ) {
         if (iconName.isNotEmpty()) {
             Icon(
@@ -33,3 +35,15 @@ fun RenderFloatingActionButton(component: ViewComponent) {
     }
 }
 
+@Preview
+@Composable
+fun PreviewRenderFloatingActionButton() {
+    val sampleComponent = ViewComponent(
+        type = "FloatingActionButton",
+        attributes = mapOf(
+            "iconName" to JsonPrimitive("arrow_forward"),
+            "contentDescription" to JsonPrimitive("Add")
+        )
+    )
+    RenderFloatingActionButton(component = sampleComponent)
+}
