@@ -9,12 +9,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sacada.core.util.getStringAttribute
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
 
 @Composable
 fun RenderText(component: ViewComponent) {
-    val style = when (component.attributes["style"]?.jsonPrimitive?.content) {
+    val style = when (component.getStringAttribute("style")) {
         "displayLarge" -> MaterialTheme.typography.displayLarge
         "displayMedium" -> MaterialTheme.typography.displayMedium
         "displaySmall" -> MaterialTheme.typography.displaySmall
@@ -33,11 +34,11 @@ fun RenderText(component: ViewComponent) {
         else -> MaterialTheme.typography.bodyMedium
     }
 
-    val padding = component.attributes["padding"]?.jsonPrimitive?.content?.toIntOrNull()?.dp ?: 0.dp
+    val padding = component.getStringAttribute("padding").toIntOrNull()?.dp ?: 0.dp
 
 
     Text(
-        text = component.attributes["content"]?.jsonPrimitive?.content ?: "",
+        text = component.getStringAttribute("content"),
         style = style,
         modifier = Modifier.padding(0.dp, padding),
         textAlign = TextAlign.Center

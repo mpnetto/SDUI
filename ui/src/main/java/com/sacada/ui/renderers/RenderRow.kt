@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.serialization.json.jsonPrimitive
+import com.sacada.core.util.getStringAttribute
 
 @Composable
 fun RenderRow(component: ViewComponent) {
-    val horizontalArrangement = when (component.attributes["horizontalArrangement"]?.jsonPrimitive?.content) {
+    val horizontalArrangement = when (component.getStringAttribute("horizontalArrangement")) {
         "SpaceBetween" -> Arrangement.SpaceBetween
         "SpaceAround" -> Arrangement.SpaceAround
         "SpaceEvenly" -> Arrangement.SpaceEvenly
@@ -22,14 +22,14 @@ fun RenderRow(component: ViewComponent) {
         else -> Arrangement.Start
     }
 
-    val verticalAlignment = when (component.attributes["verticalAlignment"]?.jsonPrimitive?.content) {
+    val verticalAlignment = when (component.getStringAttribute("verticalAlignment")) {
         "Top" -> Alignment.Top
         "CenterVertically" -> Alignment.CenterVertically
         "Bottom" -> Alignment.Bottom
         else -> Alignment.CenterVertically
     }
 
-    val padding = component.attributes["padding"]?.jsonPrimitive?.content?.toIntOrNull()?.dp ?: 0.dp
+    val padding = component.getStringAttribute("padding").toIntOrNull()?.dp ?: 0.dp
 
     Row(
         modifier = Modifier.padding(padding),

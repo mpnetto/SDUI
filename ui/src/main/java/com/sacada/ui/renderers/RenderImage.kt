@@ -5,12 +5,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import kotlinx.serialization.json.jsonPrimitive
+import com.sacada.core.util.getStringAttribute
 
 @Composable
 fun RenderImage(component: ViewComponent) {
-    val resourceId = component.attributes["resourceId"]?.jsonPrimitive?.content?.toIntOrNull()
-    val contentDescription = component.attributes["contentDescription"]?.jsonPrimitive?.content
+    val resourceId = component.getStringAttribute("resourceId").toIntOrNull()
+    val contentDescription = component.getStringAttribute("contentDescription")
 
     if (resourceId != null) {
         Image(

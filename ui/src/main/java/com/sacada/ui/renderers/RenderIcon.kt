@@ -8,19 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.model.handleAction
+import com.sacada.core.util.getStringAttribute
 import com.sacada.util.getIconResource
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.jsonPrimitive
 
 
 @Composable
 fun RenderIcon(component: ViewComponent) {
 
-    val iconName = component.attributes["iconName"]?.jsonPrimitive?.content
-    val contentDescription = component.attributes["contentDescription"]?.jsonPrimitive?.content ?: ""
+    val iconName = component.getStringAttribute("iconName")
+    val contentDescription = component.getStringAttribute("contentDescription")
 
 
-    if (iconName != null) {
+    if (iconName.isNotEmpty()) {
         Box(
             modifier = Modifier.clickable {
                 component.action?.let { handleAction(it) }

@@ -4,11 +4,11 @@ import ViewComponent
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import kotlinx.serialization.json.jsonPrimitive
+import com.sacada.core.util.getStringAttribute
 
 @Composable
 fun RenderButton(component: ViewComponent) {
-    val text = component.attributes["text"]?.jsonPrimitive?.content ?: "Button"
+    val text = component.getStringAttribute("text")
 
     Button(
         onClick = {

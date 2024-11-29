@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun RenderScreen(screen: ViewScreen) {
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {

@@ -16,16 +16,16 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextOverflow
-import kotlinx.serialization.json.jsonPrimitive
+import com.sacada.core.util.getStringAttribute
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RenderTopBar(component: ViewComponent ) {
 
-    val barTitle = component.attributes["title"]?.jsonPrimitive?.content ?: ""
+    val barTitle = component.getStringAttribute("title")
     val scrollBehavior =
-        resolveScrollBehavior(component.attributes["scrollBehavior"]?.jsonPrimitive?.content)
+        resolveScrollBehavior(component.getStringAttribute("scrollBehavior"))
     val appBar = resolveAppBarType(component.type)
 
     val title = @Composable {
@@ -34,7 +34,7 @@ fun RenderTopBar(component: ViewComponent ) {
         )
     }
 
-    val navigationIcon = @Composable {
+    val navigationIcon : @Composable () -> Unit = {
         component.children.find { it.type == "navigationIcon" }?.let {
             RenderIconButton(it)
         }

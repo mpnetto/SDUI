@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
-import kotlinx.serialization.json.jsonPrimitive
+import com.sacada.core.util.getStringAttribute
 
 @Composable
 fun RenderCheckbox(component: ViewComponent) {
@@ -17,6 +17,6 @@ fun RenderCheckbox(component: ViewComponent) {
             checked = isChecked.value,
             onCheckedChange = { isChecked.value = it }
         )
-        Text(text = component.attributes["label"]?.jsonPrimitive?.content ?: "Checkbox")
+        Text(text = component.getStringAttribute("label"))
     }
 }
