@@ -10,11 +10,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.util.getStringAttribute
+import com.sacada.util.getPadding
 import kotlinx.serialization.json.JsonPrimitive
 
 @Composable
 fun RenderTextField(component: ViewComponent) {
     val textValue = remember { mutableStateOf("") }
+    val padding = remember { component.getPadding() }
+
     Column {
         Text(text = component.getStringAttribute("label"))
         TextField(

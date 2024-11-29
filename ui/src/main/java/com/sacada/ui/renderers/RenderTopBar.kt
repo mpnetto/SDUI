@@ -15,6 +15,7 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.text.style.TextOverflow
 import com.sacada.core.util.getStringAttribute
 
@@ -23,28 +24,14 @@ import com.sacada.core.util.getStringAttribute
 @Composable
 fun RenderTopBar(component: ViewComponent ) {
 
-    val barTitle = component.getStringAttribute("title")
+    val barTitle = remember { component.getStringAttribute("title") }
     val scrollBehavior =
         resolveScrollBehavior(component.getStringAttribute("scrollBehavior"))
-    val appBar = resolveAppBarType(component.type)
+    val appBar = remember { resolveAppBarType(component.type) }
 
-    val title = @Composable {
-        Text(
-            text = barTitle, maxLines = 1, overflow = TextOverflow.Ellipsis
-        )
-    }
-
-    val navigationIcon : @Composable () -> Unit = {
-        component.children.find { it.type == "navigationIcon" }?.let {
-            RenderIconButton(it)
-        }
-    }
-
-    val actions: @Composable RowScope.() -> Unit = {
-        component.children.filter { it.type == "Action" }.forEach { actionComponent ->
-            RenderIconButton(actionComponent)
-        }
-    }
+    val title =  createTitleComposable(barTitle)
+    val navigationIcon = createNavigationIconComposable(component)
+    val actions = createActionsComposable(component)
 
     val colors = topAppBarColors(
         containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -111,5 +98,28 @@ private fun resolveAppBarType(type: String): @Composable (
                 scrollBehavior = scrollBehavior
             )
         }
+    }
+}
+
+@Composable
+private fun createTitleComposable(barTitle: String): @Composable () -> Unit = {
+    Text(
+        text = barTitle,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
+}
+
+@Composable
+private fun createNavigationIconComposable(component: ViewComponent): @Composable () -> Unit = {
+    component.children.find { it.type == "navigationIcon" }?.let {
+        RenderIconButton(it)
+    }
+}
+
+@Composable
+private fun createActionsComposable(component: ViewComponent): @Composable RowScope.() -> Unit = {
+    component.children.filter { it.type == "Action" }.forEach { actionComponent ->
+        RenderIconButton(actionComponent)
     }
 }

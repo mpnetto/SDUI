@@ -5,37 +5,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sacada.core.util.getStringAttribute
+import com.sacada.util.getPadding
+import com.sacada.util.getTextStyle
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.jsonPrimitive
 
 @Composable
 fun RenderText(component: ViewComponent) {
-    val style = when (component.getStringAttribute("style")) {
-        "displayLarge" -> MaterialTheme.typography.displayLarge
-        "displayMedium" -> MaterialTheme.typography.displayMedium
-        "displaySmall" -> MaterialTheme.typography.displaySmall
-        "headlineLarge" -> MaterialTheme.typography.headlineLarge
-        "headlineMedium" -> MaterialTheme.typography.headlineMedium
-        "headlineSmall" -> MaterialTheme.typography.headlineSmall
-        "titleLarge" -> MaterialTheme.typography.titleLarge
-        "titleMedium" -> MaterialTheme.typography.titleMedium
-        "titleSmall" -> MaterialTheme.typography.titleSmall
-        "bodyLarge" -> MaterialTheme.typography.bodyLarge
-        "bodyMedium" -> MaterialTheme.typography.bodyMedium
-        "bodySmall" -> MaterialTheme.typography.bodySmall
-        "labelLarge" -> MaterialTheme.typography.labelLarge
-        "labelMedium" -> MaterialTheme.typography.labelMedium
-        "labelSmall" -> MaterialTheme.typography.labelSmall
-        else -> MaterialTheme.typography.bodyMedium
-    }
-
-    val padding = component.getStringAttribute("padding").toIntOrNull()?.dp ?: 0.dp
-
+    val style = component.getTextStyle()
+    val padding = remember { component.getPadding() }
 
     Text(
         text = component.getStringAttribute("content"),

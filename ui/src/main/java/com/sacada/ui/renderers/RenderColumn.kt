@@ -6,10 +6,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.sacada.core.util.getStringAttribute
+import com.sacada.util.getPadding
 
 @Composable
 fun RenderColumn(component: ViewComponent) {
@@ -27,7 +28,7 @@ fun RenderColumn(component: ViewComponent) {
         else -> Arrangement.Top
     }
 
-    val padding = component.getStringAttribute("padding").toIntOrNull()?.dp ?: 0.dp
+    val padding = remember { component.getPadding() }
 
     Column(
         modifier = Modifier.fillMaxSize().padding(padding),

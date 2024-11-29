@@ -56,4 +56,6 @@ dependencies {
 
     // Kotlin Serialization
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.coil.compose)
 }
