@@ -21,93 +21,95 @@ import kotlinx.serialization.json.jsonPrimitive
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RenderTopBar(component: ViewComponent) {
+fun RenderTopBar(component: ViewComponent ) {
 
-    val navigationIcon  = component.children.find { it.type == "navigationIcon" }
+    val barTitle = component.attributes["title"]?.jsonPrimitive?.content ?: ""
+    val scrollBehavior =
+        resolveScrollBehavior(component.attributes["scrollBehavior"]?.jsonPrimitive?.content)
+    val appBar = resolveAppBarType(component.type)
 
-    val title = component.attributes["title"]?.jsonPrimitive?.content ?: ""
-
-    val scrollBehavior = when (component.attributes["scrollBehavior"]?.jsonPrimitive?.content) {
-        "enterAlways" -> TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-        "exitUntilCollapsed" -> TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
-            rememberTopAppBarState()
+    val title = @Composable {
+        Text(
+            text = barTitle, maxLines = 1, overflow = TextOverflow.Ellipsis
         )
+    }
 
-        "pinned" -> TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val navigationIcon = @Composable {
+        component.children.find { it.type == "navigationIcon" }?.let {
+            RenderIconButton(it)
+        }
+    }
+
+    val actions: @Composable RowScope.() -> Unit = {
+        component.children.filter { it.type == "Action" }.forEach { actionComponent ->
+            RenderIconButton(actionComponent)
+        }
+    }
+
+    val colors = topAppBarColors(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        titleContentColor = MaterialTheme.colorScheme.primary
+    )
+
+
+    appBar(title, navigationIcon, actions, colors, scrollBehavior)
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun resolveScrollBehavior(scrollBehaviorType: String?): TopAppBarScrollBehavior? {
+    val appBarState = rememberTopAppBarState()
+    return when (scrollBehaviorType) {
+        "enterAlways" -> TopAppBarDefaults.enterAlwaysScrollBehavior(appBarState)
+        "exitUntilCollapsed" -> TopAppBarDefaults.exitUntilCollapsedScrollBehavior(appBarState)
+        "pinned" -> TopAppBarDefaults.pinnedScrollBehavior(appBarState)
         else -> null
     }
+}
 
-    val appBar: @Composable (
-        title: @Composable () -> Unit,
-        navigationIcon: @Composable () -> Unit,
-        actions: @Composable RowScope.() -> Unit,
-        colors: TopAppBarColors,
-        scrollBehavior: TopAppBarScrollBehavior?
-    ) -> Unit = when (component.type) {
-        "large" -> { topTitle, topNavigationIcon, actions, colors, topScrollBehavior ->
+@OptIn(ExperimentalMaterial3Api::class)
+private fun resolveAppBarType(type: String): @Composable (
+    title: @Composable () -> Unit, navigationIcon: @Composable () -> Unit, actions: @Composable RowScope.() -> Unit, colors: TopAppBarColors, scrollBehavior: TopAppBarScrollBehavior?
+) -> Unit {
+    return when (type) {
+        "large" -> { title, navigationIcon, actions, colors, scrollBehavior ->
             LargeTopAppBar(
-                title = topTitle,
-                navigationIcon = topNavigationIcon,
+                title = title,
+                navigationIcon = navigationIcon,
                 actions = actions,
                 colors = colors,
-                scrollBehavior = topScrollBehavior
+                scrollBehavior = scrollBehavior
             )
         }
 
-        "medium" -> { topTitle, topNavigationIcon, actions, colors, topScrollBehavior ->
+        "medium" -> { title, navigationIcon, actions, colors, scrollBehavior ->
             MediumTopAppBar(
-                title = topTitle,
-                navigationIcon = topNavigationIcon,
+                title = title,
+                navigationIcon = navigationIcon,
                 actions = actions,
                 colors = colors,
-                scrollBehavior = topScrollBehavior
+                scrollBehavior = scrollBehavior
             )
         }
 
-        "center" -> { topTitle, topNavigationIcon, actions, colors, topScrollBehavior ->
+        "center" -> { title, navigationIcon, actions, colors, scrollBehavior ->
             CenterAlignedTopAppBar(
-                title = topTitle,
-                navigationIcon = topNavigationIcon,
+                title = title,
+                navigationIcon = navigationIcon,
                 actions = actions,
                 colors = colors,
-                scrollBehavior = topScrollBehavior
+                scrollBehavior = scrollBehavior
             )
         }
 
-        else -> { topTitle, topNavigationIcon, actions, colors, topScrollBehavior ->
+        else -> { title, navigationIcon, actions, colors, scrollBehavior ->
             TopAppBar(
-                title = topTitle,
-                navigationIcon = topNavigationIcon,
+                title = title,
+                navigationIcon = navigationIcon,
                 actions = actions,
                 colors = colors,
-                scrollBehavior = topScrollBehavior
+                scrollBehavior = scrollBehavior
             )
         }
     }
-
-    appBar(
-        {
-            Text(
-                text = title,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        },
-        {
-            navigationIcon?.let{
-                RenderIconButton(navigationIcon)
-            }
-
-        },
-        {
-            component.children.filter { it.type == "Action" }.forEach { actionComponent ->
-                RenderIconButton(actionComponent)
-            }
-        },
-        topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary
-        ),
-        scrollBehavior
-    )
 }
