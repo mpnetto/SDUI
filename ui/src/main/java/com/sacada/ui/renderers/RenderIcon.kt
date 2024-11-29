@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.model.handleAction
 import com.sacada.util.getIconResource
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
 
 
@@ -31,4 +33,18 @@ fun RenderIcon(component: ViewComponent) {
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewRenderIcon() {
+    val testComponent = ViewComponent(
+        type = "IconButton",
+        attributes = mapOf(
+            "iconName" to JsonPrimitive("add"),
+            "contentDescription" to JsonPrimitive("Adicionar")
+        )
+    )
+
+    RenderIconButton(component = testComponent)
 }
