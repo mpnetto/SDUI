@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -65,5 +67,14 @@ dependencies {
 
     // Kotlin Serialization
     implementation(libs.kotlinx.serialization.json)
+
+    // Hilt core
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
+
+    kapt (libs.androidx.hilt.compiler)
+
+    // Jetpack Compose integration with Hilt
+    implementation ( libs.androidx.hilt.navigation.compose)
 
 }

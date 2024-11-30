@@ -1,4 +1,4 @@
-package com.sacada.ui.renderers
+package com.sacada.ui.ui.renderers
 
 import ViewComponent
 import androidx.compose.foundation.layout.padding
@@ -11,8 +11,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sacada.core.util.getStringAttribute
-import com.sacada.util.getPadding
-import com.sacada.util.getTextStyle
+import com.sacada.ui.util.getPadding
+import com.sacada.ui.util.getTextStyle
 import kotlinx.serialization.json.JsonPrimitive
 
 @Composable

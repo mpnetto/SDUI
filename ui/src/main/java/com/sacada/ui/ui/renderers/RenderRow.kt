@@ -1,4 +1,4 @@
-package com.sacada.ui.renderers
+package com.sacada.ui.ui.renderers
 
 import ViewComponent
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.sacada.core.util.getStringAttribute
-import com.sacada.util.getPadding
+import com.sacada.ui.util.getPadding
 
 @Composable
 fun RenderRow(component: ViewComponent) {

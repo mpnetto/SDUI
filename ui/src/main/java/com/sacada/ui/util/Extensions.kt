@@ -1,4 +1,4 @@
-package com.sacada.util
+package com.sacada.ui.util
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

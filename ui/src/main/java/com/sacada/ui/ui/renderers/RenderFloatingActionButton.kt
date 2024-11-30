@@ -1,4 +1,4 @@
-package com.sacada.ui.renderers
+package com.sacada.ui.ui.renderers
 
 import ViewComponent
 import androidx.compose.material3.FloatingActionButton
@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.model.handleAction
 import com.sacada.core.util.getStringAttribute
-import com.sacada.util.getIconResource
+import com.sacada.ui.util.getIconResource
 import kotlinx.serialization.json.JsonPrimitive
 
 

@@ -3,6 +3,7 @@ package com.sacada.sdui.test
 val samplePayload = """
 {
     "topBar": {
+        "id": "topBar1",
         "type": "center",
         "attributes": {
             "title": "Now in Android",
@@ -10,6 +11,7 @@ val samplePayload = """
         },
         "children": [
             {
+                "id": "navigationIcon1",
                 "type": "navigationIcon",
                 "attributes": {
                     "iconName": "search",
@@ -21,6 +23,7 @@ val samplePayload = """
                 }
             },
             {
+                "id": "action1",
                 "type": "Action",
                 "attributes": {
                     "iconName": "person",
@@ -34,9 +37,11 @@ val samplePayload = """
         ]
     },
     "bottomBar": {
+        "id": "bottomBar1",
         "type": "BottomBar",
         "children": [
             {
+                "id": "actionHome",
                 "type": "Action",
                 "attributes": {
                     "iconName": "home",
@@ -48,6 +53,7 @@ val samplePayload = """
                 }
             },
             {
+                "id": "actionSearch",
                 "type": "Action",
                 "attributes": {
                     "iconName": "search",
@@ -59,6 +65,7 @@ val samplePayload = """
                 }
             },
             {
+                "id": "fab1",
                 "type": "FloatingActionButton",
                 "attributes": {
                     "iconName": "arrow_forward",
@@ -72,6 +79,7 @@ val samplePayload = """
         ]
     },
     "layout": {
+        "id": "layout1",
         "type": "Column",
         "attributes": {
             "verticalArrangement": "SpaceBetween",
@@ -79,6 +87,7 @@ val samplePayload = """
         },
         "children": [
             {
+                "id": "column1",
                 "type": "Column",
                 "attributes": {
                     "horizontalAlignment": "Start",
@@ -86,13 +95,15 @@ val samplePayload = """
                 },
                 "children": [
                     {
+                        "id": "text1",
                         "type": "Text",
                         "attributes": {
                             "content": "What are you interested in?",
                             "style": "titleLarge"
                         }
                     },
-                     {
+                    {
+                        "id": "text2",
                         "type": "Text",
                         "attributes": {
                             "content": "Updates from interests you follow will appear here. Follow some things to get started.",
@@ -100,10 +111,10 @@ val samplePayload = """
                             "padding": "12"
                         }
                     }
-                    
                 ]
             },
             {
+                "id": "row1",
                 "type": "Row",
                 "attributes": {
                     "horizontalArrangement": "SpaceBetween",
@@ -111,6 +122,7 @@ val samplePayload = """
                 },
                 "children": [
                     {
+                        "id": "buttonConfirm",
                         "type": "Button",
                         "attributes": {
                             "text": "Confirmar"
@@ -121,6 +133,7 @@ val samplePayload = """
                         }
                     },
                     {
+                        "id": "buttonCancel",
                         "type": "Button",
                         "attributes": {
                             "text": "Cancelar"

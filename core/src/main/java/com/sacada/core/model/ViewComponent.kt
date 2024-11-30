@@ -4,6 +4,7 @@ import kotlinx.serialization.json.JsonElement
 
 @Serializable
 data class ViewComponent(
+    val id: String? = null,
     val type: String,
     val attributes: Map<String, JsonElement> = emptyMap(),
     val action: Action? = null,

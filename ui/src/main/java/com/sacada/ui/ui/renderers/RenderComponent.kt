@@ -1,4 +1,4 @@
-package com.sacada.ui.renderers
+package com.sacada.ui.ui.renderers
 
 import ViewComponent
 import androidx.compose.material3.Text
