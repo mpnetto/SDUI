@@ -13,16 +13,16 @@ import androidx.compose.ui.unit.dp
 import com.sacada.core.util.getStringAttribute
 import com.sacada.ui.util.getPadding
 import com.sacada.ui.util.getTextStyle
-import kotlinx.serialization.json.JsonPrimitive
+import com.sacada.ui.util.parseJson
 
 @Composable
 fun RenderText(component: ViewComponent) {
-    val style = component.getTextStyle()
+    val textStyle = component.getTextStyle()
     val padding = remember { component.getPadding() }
 
     Text(
         text = component.getStringAttribute("content"),
-        style = style,
+        style = textStyle,
         modifier = Modifier.padding(0.dp, padding),
         textAlign = TextAlign.Center
     )
@@ -31,13 +31,19 @@ fun RenderText(component: ViewComponent) {
 @Preview(showBackground = true, widthDp = 200)
 @Composable
 fun PreviewRenderText() {
-    val testComponent = ViewComponent(
-        type = "Text",
-        attributes = mapOf(
-            "content" to JsonPrimitive("Olá, este é um texto de exemplo!"),
-            "style" to JsonPrimitive("title")
-        )
-    )
+    val testComponent = """
+        {
+            "id": "text1",
+            "type": "Text",
+            "attributes": {
+                "content": "What are you interested in?",
+                "style": {
+                    "type": "titleLarge",
+                    "color": "black"
+                }
+            }
+        }
+    """.parseJson()
 
     MaterialTheme {
         RenderText(component = testComponent)

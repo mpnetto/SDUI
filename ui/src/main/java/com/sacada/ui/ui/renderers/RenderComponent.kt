@@ -3,6 +3,7 @@ package com.sacada.ui.ui.renderers
 import ViewComponent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.sacada.ui.ui.screen.ScreenViewModel
 
 @Composable
 fun RenderComponent(component: ViewComponent) {

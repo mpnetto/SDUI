@@ -99,7 +99,10 @@ val samplePayload = """
                         "type": "Text",
                         "attributes": {
                             "content": "What are you interested in?",
-                            "style": "titleLarge"
+                            "style": {
+                                "type": "titleLarge",
+                                "color": "black"
+                            }
                         }
                     },
                     {
@@ -107,8 +110,22 @@ val samplePayload = """
                         "type": "Text",
                         "attributes": {
                             "content": "Updates from interests you follow will appear here. Follow some things to get started.",
-                            "style": "bodyMedium",
-                            "padding": "12"
+                            "style": {
+                                "type": "bodyMedium",
+                                "padding": "12"
+                            }
+                        }
+                    },
+                    {
+                        "id": "usernameField",
+                        "type": "TextField",
+                        "attributes": {
+                            "placeholder": "Enter your username",
+                            "validation": {
+                                "required": true,
+                                "minLength": 5,
+                                "regex": "^[a-zA-Z0-9_]*${'$'}"
+                            }
                         }
                     }
                 ]
@@ -125,7 +142,11 @@ val samplePayload = """
                         "id": "buttonConfirm",
                         "type": "Button",
                         "attributes": {
-                            "text": "Confirmar"
+                            "text": "Confirmar",
+                            "style": {
+                                "color": "green",
+                                "fontWeight": "bold"
+                            }
                         },
                         "action": {
                             "type": "event",
@@ -136,7 +157,11 @@ val samplePayload = """
                         "id": "buttonCancel",
                         "type": "Button",
                         "attributes": {
-                            "text": "Cancelar"
+                            "text": "Cancelar",
+                            "style": {
+                                "color": "red",
+                                "fontWeight": "regular"
+                            }
                         },
                         "action": {
                             "type": "event",
