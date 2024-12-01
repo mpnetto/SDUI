@@ -13,16 +13,15 @@ import com.sacada.core.util.getStringAttribute
 import com.sacada.ui.util.getIconResource
 import kotlinx.serialization.json.JsonPrimitive
 
-
 @Composable
 fun RenderIcon(component: ViewComponent) {
-
     val iconName = remember { component.getStringAttribute("iconName") }
     val contentDescription = remember { component.getStringAttribute("contentDescription") }
 
     if (iconName.isNotEmpty()) {
         Box(
-            modifier = Modifier.clickable {
+            modifier =
+            Modifier.clickable {
                 component.action?.let { handleAction(it) }
             }
         ) {
@@ -31,20 +30,21 @@ fun RenderIcon(component: ViewComponent) {
                 contentDescription = contentDescription
             )
         }
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewRenderIcon() {
-    val testComponent = ViewComponent(
-        type = "IconButton",
-        attributes = mapOf(
-            "iconName" to JsonPrimitive("add"),
-            "contentDescription" to JsonPrimitive("Adicionar")
+    val testComponent =
+        ViewComponent(
+            type = "IconButton",
+            attributes =
+            mapOf(
+                "iconName" to JsonPrimitive("add"),
+                "contentDescription" to JsonPrimitive("Adicionar")
+            )
         )
-    )
 
     RenderIconButton(component = testComponent)
 }

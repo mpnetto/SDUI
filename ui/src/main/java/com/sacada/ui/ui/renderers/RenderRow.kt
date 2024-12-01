@@ -13,25 +13,27 @@ import com.sacada.ui.util.getPadding
 
 @Composable
 fun RenderRow(component: ViewComponent) {
-    val horizontalArrangement = remember {
+    val horizontalArrangement =
+        remember {
             when (component.getStringAttribute("horizontalArrangement")) {
-            "SpaceBetween" -> Arrangement.SpaceBetween
-            "SpaceAround" -> Arrangement.SpaceAround
-            "SpaceEvenly" -> Arrangement.SpaceEvenly
-            "Start" -> Arrangement.Start
-            "End" -> Arrangement.End
-            "Center" -> Arrangement.Center
-            else -> Arrangement.Start
+                "SpaceBetween" -> Arrangement.SpaceBetween
+                "SpaceAround" -> Arrangement.SpaceAround
+                "SpaceEvenly" -> Arrangement.SpaceEvenly
+                "Start" -> Arrangement.Start
+                "End" -> Arrangement.End
+                "Center" -> Arrangement.Center
+                else -> Arrangement.Start
+            }
         }
-    }
-    val verticalAlignment = remember {
-        when (component.getStringAttribute("verticalAlignment")) {
-            "Top" -> Alignment.Top
-            "CenterVertically" -> Alignment.CenterVertically
-            "Bottom" -> Alignment.Bottom
-            else -> Alignment.CenterVertically
+    val verticalAlignment =
+        remember {
+            when (component.getStringAttribute("verticalAlignment")) {
+                "Top" -> Alignment.Top
+                "CenterVertically" -> Alignment.CenterVertically
+                "Bottom" -> Alignment.Bottom
+                else -> Alignment.CenterVertically
+            }
         }
-    }
 
     val padding = remember { component.getPadding() }
 

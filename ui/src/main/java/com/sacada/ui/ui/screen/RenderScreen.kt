@@ -14,13 +14,13 @@ import com.sacada.ui.ui.renderers.RenderBottomBar
 import com.sacada.ui.ui.renderers.RenderComponent
 import com.sacada.ui.ui.renderers.RenderTopBar
 
-val LocalScreenViewModel = compositionLocalOf<ScreenViewModel> {
-    error("ScreenViewModel not provided")
-}
+val LocalScreenViewModel =
+    compositionLocalOf<ScreenViewModel> {
+        error("ScreenViewModel not provided")
+    }
 
 @Composable
 fun RenderScreen(screen: ViewScreen, viewModel: ScreenViewModel = hiltViewModel()) {
-
     CompositionLocalProvider(LocalScreenViewModel provides viewModel) {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
@@ -32,7 +32,8 @@ fun RenderScreen(screen: ViewScreen, viewModel: ScreenViewModel = hiltViewModel(
             }
         ) { innerPadding ->
             Column(
-                modifier = Modifier
+                modifier =
+                Modifier
                     .padding(innerPadding)
                     .fillMaxSize()
             ) {

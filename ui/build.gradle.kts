@@ -62,12 +62,12 @@ dependencies {
     implementation(libs.coil.compose)
 
     // Hilt core
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // Hilt para ViewModel
-    kapt (libs.androidx.hilt.compiler)
+    kapt(libs.androidx.hilt.compiler)
 
     // Jetpack Compose integration with Hilt
-    implementation ( libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 }

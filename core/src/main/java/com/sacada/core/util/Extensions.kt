@@ -11,9 +11,12 @@ import kotlinx.serialization.json.jsonPrimitive
 
 fun ViewComponent.getStringAttribute(key: String): String {
     return attributes[key]?.let {
-        if (it is JsonPrimitive) it.contentOrNull
-        else it.toString()
-    }?: ""
+        if (it is JsonPrimitive) {
+            it.contentOrNull
+        } else {
+            it.toString()
+        }
+    } ?: ""
 }
 
 fun ViewComponent.getSubAttributes(key: String): Map<String, JsonElement>? {
@@ -24,13 +27,13 @@ fun ViewComponent.isValid(value: String): Boolean {
     val validationAttributes = this.getSubAttributes("validation") ?: return true
 
     val isRequired = validationAttributes["required"]?.jsonPrimitive?.booleanOrNull ?: false
-    if(isRequired && value.isBlank()) return false
+    if (isRequired && value.isBlank()) return false
 
     val minLength = validationAttributes["minLength"]?.jsonPrimitive?.intOrNull
-    if(minLength != null && value.length < minLength) return false
+    if (minLength != null && value.length < minLength) return false
 
     val regex = validationAttributes["regex"]?.jsonPrimitive?.contentOrNull
-    if(regex != null && !Regex(regex).matches(value)) return false
+    if (regex != null && !Regex(regex).matches(value)) return false
 
     return true
 }

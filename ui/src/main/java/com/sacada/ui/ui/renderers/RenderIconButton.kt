@@ -7,10 +7,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.model.handleAction
 import kotlinx.serialization.json.JsonPrimitive
 
-
 @Composable
 fun RenderIconButton(component: ViewComponent) {
-
     IconButton(
         onClick = {
             component.action?.let { handleAction(it) }
@@ -23,13 +21,15 @@ fun RenderIconButton(component: ViewComponent) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewRenderIconButton() {
-    val testComponent = ViewComponent(
-        type = "IconButton",
-        attributes = mapOf(
-            "iconName" to JsonPrimitive("home"),
-            "contentDescription" to JsonPrimitive("Ajuda")
+    val testComponent =
+        ViewComponent(
+            type = "IconButton",
+            attributes =
+            mapOf(
+                "iconName" to JsonPrimitive("home"),
+                "contentDescription" to JsonPrimitive("Ajuda")
+            )
         )
-    )
 
     RenderIconButton(component = testComponent)
 }

@@ -54,9 +54,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation (libs.androidx.compose.ui)
-    implementation (libs.material3)
-    implementation( libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -69,12 +69,11 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // Hilt core
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    kapt (libs.androidx.hilt.compiler)
+    kapt(libs.androidx.hilt.compiler)
 
     // Jetpack Compose integration with Hilt
-    implementation ( libs.androidx.hilt.navigation.compose)
-
+    implementation(libs.androidx.hilt.navigation.compose)
 }

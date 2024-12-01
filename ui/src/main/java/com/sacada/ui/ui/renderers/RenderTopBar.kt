@@ -21,11 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.sacada.core.util.getStringAttribute
 import kotlinx.serialization.json.JsonPrimitive
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RenderTopBar(component: ViewComponent) {
-
     val barTitle = remember { component.getStringAttribute("title") }
     val scrollBehavior = resolveScrollBehavior(component.getStringAttribute("scrollBehavior"))
     val appBar = remember { resolveAppBarType(component.type) }
@@ -34,11 +32,11 @@ fun RenderTopBar(component: ViewComponent) {
     val navigationIcon = createNavigationIconComposable(component)
     val actions = createActionsComposable(component)
 
-    val colors = topAppBarColors(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        titleContentColor = MaterialTheme.colorScheme.primary
-    )
-
+    val colors =
+        topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary
+        )
 
     appBar(title, navigationIcon, actions, colors, scrollBehavior)
 }
@@ -56,8 +54,14 @@ private fun resolveScrollBehavior(scrollBehaviorType: String?): TopAppBarScrollB
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-private fun resolveAppBarType(type: String): @Composable (
-    title: @Composable () -> Unit, navigationIcon: @Composable () -> Unit, actions: @Composable RowScope.() -> Unit, colors: TopAppBarColors, scrollBehavior: TopAppBarScrollBehavior?
+private fun resolveAppBarType(
+    type: String
+): @Composable (
+    title: @Composable () -> Unit,
+    navigationIcon: @Composable () -> Unit,
+    actions: @Composable RowScope.() -> Unit,
+    colors: TopAppBarColors,
+    scrollBehavior: TopAppBarScrollBehavior?
 ) -> Unit {
     return when (type) {
         "large" -> { title, navigationIcon, actions, colors, scrollBehavior ->
@@ -105,7 +109,9 @@ private fun resolveAppBarType(type: String): @Composable (
 @Composable
 private fun createTitleComposable(barTitle: String): @Composable () -> Unit = {
     Text(
-        text = barTitle, maxLines = 1, overflow = TextOverflow.Ellipsis
+        text = barTitle,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
     )
 }
 
@@ -126,25 +132,38 @@ private fun createActionsComposable(component: ViewComponent): @Composable RowSc
 @Preview(showBackground = true)
 @Composable
 fun PreviewRenderTopBar() {
-    val sampleComponent = ViewComponent(
-        type = "center", attributes = mapOf(
-            "title" to JsonPrimitive("Sample Top Bar"),
-            "scrollBehavior" to JsonPrimitive("enterAlways")
-        ), children = listOf(
-            ViewComponent(
-                type = "navigationIcon", attributes = mapOf(
-                    "iconName" to JsonPrimitive("arrow_back"),
-                )
-            ), ViewComponent(
-                type = "Action", attributes = mapOf(
-                    "iconName" to JsonPrimitive("menu"),
-                )
-            ), ViewComponent(
-                type = "Action", attributes = mapOf(
-                    "iconName" to JsonPrimitive("home"),
+    val sampleComponent =
+        ViewComponent(
+            type = "center",
+            attributes =
+            mapOf(
+                "title" to JsonPrimitive("Sample Top Bar"),
+                "scrollBehavior" to JsonPrimitive("enterAlways")
+            ),
+            children =
+            listOf(
+                ViewComponent(
+                    type = "navigationIcon",
+                    attributes =
+                    mapOf(
+                        "iconName" to JsonPrimitive("arrow_back")
+                    )
+                ),
+                ViewComponent(
+                    type = "Action",
+                    attributes =
+                    mapOf(
+                        "iconName" to JsonPrimitive("menu")
+                    )
+                ),
+                ViewComponent(
+                    type = "Action",
+                    attributes =
+                    mapOf(
+                        "iconName" to JsonPrimitive("home")
+                    )
                 )
             )
         )
-    )
     RenderTopBar(component = sampleComponent)
 }

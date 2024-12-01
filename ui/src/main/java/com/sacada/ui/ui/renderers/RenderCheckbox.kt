@@ -21,7 +21,10 @@ fun RenderCheckbox(component: ViewComponent) {
     val isChecked = rememberSaveable { mutableStateOf(false) }
     val labelText = component.getStringAttribute("label")
 
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp) ) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp)
+    ) {
         Checkbox(
             checked = isChecked.value,
             onCheckedChange = { isChecked.value = it }
@@ -33,11 +36,13 @@ fun RenderCheckbox(component: ViewComponent) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewRenderCheckbox() {
-    val sampleComponent = ViewComponent(
-        type = "Checkbox",
-        attributes = mapOf(
-            "label" to JsonPrimitive("Accept Terms and Conditions")
+    val sampleComponent =
+        ViewComponent(
+            type = "Checkbox",
+            attributes =
+            mapOf(
+                "label" to JsonPrimitive("Accept Terms and Conditions")
+            )
         )
-    )
     RenderCheckbox(component = sampleComponent)
 }

@@ -17,7 +17,7 @@ fun RenderImage(component: ViewComponent) {
         Image(
             painter = rememberAsyncImagePainter(model = imageUrl),
             contentDescription = contentDescription,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Crop
         )
     }
 }

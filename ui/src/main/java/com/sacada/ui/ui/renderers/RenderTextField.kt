@@ -30,14 +30,16 @@ fun RenderTextField(component: ViewComponent) {
                 textValue.value = it
                 isValid.value = component.isValid(it)
                 viewModel.updateComponentState(component.id, isValid.value)
-            })
+            }
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewRenderTextField() {
-    val testComponent = """
+    val testComponent =
+        """
         {
           "id": "usernameField",
           "type": "TextField",

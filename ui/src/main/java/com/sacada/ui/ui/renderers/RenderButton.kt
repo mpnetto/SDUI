@@ -28,11 +28,13 @@ private fun createOnClickAction(component: ViewComponent): () -> Unit = {
 @Preview(showBackground = true)
 @Composable
 fun PreviewRenderButton() {
-    val sampleComponent = ViewComponent(
-        type = "Button",
-        attributes = mapOf(
-            "text" to JsonPrimitive("Click Me")
+    val sampleComponent =
+        ViewComponent(
+            type = "Button",
+            attributes =
+            mapOf(
+                "text" to JsonPrimitive("Click Me")
+            )
         )
-    )
     RenderButton(component = sampleComponent)
 }

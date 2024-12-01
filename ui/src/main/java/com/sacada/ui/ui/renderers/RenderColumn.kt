@@ -14,19 +14,21 @@ import com.sacada.ui.util.getPadding
 
 @Composable
 fun RenderColumn(component: ViewComponent) {
-    val horizontalAlignment = when (component.getStringAttribute("horizontalAlignment")) {
-        "CenterHorizontally" -> Alignment.CenterHorizontally
-        "Start" -> Alignment.Start
-        "End" -> Alignment.End
-        else -> Alignment.Start
-    }
+    val horizontalAlignment =
+        when (component.getStringAttribute("horizontalAlignment")) {
+            "CenterHorizontally" -> Alignment.CenterHorizontally
+            "Start" -> Alignment.Start
+            "End" -> Alignment.End
+            else -> Alignment.Start
+        }
 
-    val verticalArrangement = when (component.getStringAttribute("verticalArrangement")) {
-        "SpaceBetween" -> Arrangement.SpaceBetween
-        "SpaceAround" -> Arrangement.SpaceAround
-        "SpaceEvenly" -> Arrangement.SpaceEvenly
-        else -> Arrangement.Top
-    }
+    val verticalArrangement =
+        when (component.getStringAttribute("verticalArrangement")) {
+            "SpaceBetween" -> Arrangement.SpaceBetween
+            "SpaceAround" -> Arrangement.SpaceAround
+            "SpaceEvenly" -> Arrangement.SpaceEvenly
+            else -> Arrangement.Top
+        }
 
     val padding = remember { component.getPadding() }
 

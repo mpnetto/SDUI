@@ -31,7 +31,8 @@ fun RenderText(component: ViewComponent) {
 @Preview(showBackground = true, widthDp = 200)
 @Composable
 fun PreviewRenderText() {
-    val testComponent = """
+    val testComponent =
+        """
         {
             "id": "text1",
             "type": "Text",
