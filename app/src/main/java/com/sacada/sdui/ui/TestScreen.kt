@@ -8,5 +8,5 @@ import com.sacada.ui.ui.screen.RenderScreen
 @Composable
 fun TestScreen() {
     val rootComponent = JsonParser.parseScreen(samplePayload)
-    RenderScreen(rootComponent)
+    rootComponent?.let { RenderScreen(it) }
 }

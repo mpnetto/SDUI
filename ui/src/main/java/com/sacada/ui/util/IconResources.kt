@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 
 fun getIconResource(iconName: String) = when (iconName) {
@@ -25,5 +26,6 @@ fun getIconResource(iconName: String) = when (iconName) {
     "home" -> Icons.Default.Home
     "search" -> Icons.Default.Search
     "person" -> Icons.Default.Person
+    "settings" -> Icons.Default.Settings
     else -> Icons.Default.Warning
 }
